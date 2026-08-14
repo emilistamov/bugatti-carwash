@@ -1,0 +1,256 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 720px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #050506;
+  color: #f6f2e8;
+}
+
+.media {
+  position: absolute;
+  z-index: 0;
+  inset: 0 -80px;
+  opacity: 0.74;
+  background: #050506;
+}
+
+.poster,
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay {
+  z-index: 1;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.reflection {
+  position: absolute;
+  z-index: 2;
+  top: 14.7%;
+  left: 42.4%;
+  width: min(68.06vw, 980px);
+  height: auto;
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+.navigation {
+  position: absolute;
+  z-index: 3;
+  top: 30px;
+  left: 5.556%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 88.889%;
+  height: 64px;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 1.8px;
+}
+
+.logo {
+  position: absolute;
+  z-index: 3;
+  top: 55px;
+  left: 50%;
+  width: 84px;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.brandFocus {
+  position: absolute;
+  z-index: 3;
+  top: 20.889%;
+  left: 11.806%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  width: 76.389%;
+  height: 52.222%;
+  overflow: hidden;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  justify-content: center;
+  width: 94.545%;
+  height: 164px;
+  margin: 0;
+  color: #f6f2e8;
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 90px;
+  font-weight: 400;
+  line-height: 76px;
+  letter-spacing: 1.35px;
+  text-align: center;
+}
+
+.goldHairline {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 1px;
+  background: rgb(199 158 87 / 75%);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.78px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.callButton {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 188px;
+  height: 54px;
+  border-radius: 15px;
+  background: #c79e57;
+  color: #0b0b0a;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1.1px;
+  text-decoration: none;
+  transition: background-color 300ms ease, transform 300ms ease;
+}
+
+.callButton:hover {
+  background: #d1aa65;
+  transform: translateY(-1px);
+}
+
+.callButton:focus-visible {
+  outline: 1px solid #f6f2e8;
+  outline-offset: 4px;
+}
+
+.videoStatus {
+  position: absolute;
+  z-index: 3;
+  top: calc(100% - 78px);
+  left: 5.556%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 340px;
+  height: 32px;
+  overflow: hidden;
+  color: #b8b5ad;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 1.26px;
+  white-space: nowrap;
+}
+
+.scrollIndicator {
+  position: absolute;
+  z-index: 3;
+  bottom: 34px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  height: 60px;
+  overflow: hidden;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 1.26px;
+  white-space: nowrap;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 24px;
+  transform-origin: top;
+  background: rgb(199 158 87 / 80%);
+  animation: scrollLine 2.8s cubic-bezier(0.45, 0, 0.25, 1) 2.4s infinite;
+}
+
+.revealNav,
+.revealLogo,
+.revealTitle,
+.revealDetail,
+.revealSubtitle,
+.revealCta,
+.revealBottom {
+  opacity: 0;
+  animation: reveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.revealNav { animation-delay: 160ms; }
+.revealLogo { animation-delay: 320ms; }
+.revealTitle { animation-delay: 560ms; }
+.revealDetail { animation-delay: 820ms; }
+.revealSubtitle { animation-delay: 980ms; }
+.revealCta { animation-delay: 1140ms; }
+.revealBottom { animation-delay: 1420ms; }
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    translate: 0 14px;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    translate: 0 0;
+  }
+}
+
+@keyframes scrollLine {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.4); }
+  45% { opacity: 1; transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealNav,
+  .revealLogo,
+  .revealTitle,
+  .revealDetail,
+  .revealSubtitle,
+  .revealCta,
+  .revealBottom,
+  .scrollLine {
+    opacity: 1;
+    animation: none;
+    filter: none;
+    translate: none;
+  }
+
+  .callButton {
+    transition: none;
+  }
+}
