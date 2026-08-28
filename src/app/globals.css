@@ -3,6 +3,14 @@
 :root {
   --background: #050506;
   --foreground: #f6f2e8;
+  --color-gold: #c39a56;
+  --color-muted: #9e9c94;
+  --color-hairline: rgb(195 154 86 / 28%);
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --page-gutter: max(24px, calc((100vw - 1312px) / 2));
+  --button-radius: 15px;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-duration: 900ms;
 }
 
 * {
@@ -26,4 +34,43 @@ body {
 button,
 a {
   font: inherit;
+}
+
+.motion-ready [data-motion] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity var(--motion-duration) ease,
+    transform var(--motion-duration) var(--motion-ease);
+  transition-delay: var(--motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.motion-ready [data-motion="fade"] {
+  transform: none;
+}
+
+.motion-ready [data-motion="media"] {
+  transform: scale(1.018);
+  transition-duration: 1200ms, 1500ms;
+}
+
+.motion-ready [data-motion="line"] {
+  opacity: 1;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.motion-ready [data-motion].motion-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready [data-motion] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

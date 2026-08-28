@@ -1,0 +1,150 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: #050506;
+  color: #f1eee7;
+}
+
+.inner {
+  width: min(calc(100% - 128px), 1312px);
+  min-height: 1050px;
+  margin: 0 auto;
+  padding: 142px 0 0;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #c7a449;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 140px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  width: 1088px;
+  max-width: 100%;
+  font-size: 92px;
+  font-weight: 400;
+  letter-spacing: -0.014em;
+  line-height: 92px;
+  text-wrap: balance;
+}
+
+.supportingText {
+  max-width: 520px;
+  margin: 64px 0 0;
+  color: #8e8b84;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  line-height: 24px;
+}
+
+.callButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 188px;
+  min-width: 188px;
+  min-height: 54px;
+  margin-top: 78px;
+  padding: 0 28px;
+  border: 1px solid #c7a449;
+  background: #c7a449;
+  color: #090909;
+  border-radius: var(--button-radius);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-decoration: none;
+  transition: background 250ms ease, color 250ms ease;
+}
+
+.callButton:hover {
+  background: transparent;
+  color: #e4c975;
+}
+
+.callButton:focus-visible {
+  outline: 1px solid #e4c975;
+  outline-offset: 5px;
+}
+
+.verticalLine {
+  flex: 0 0 92px;
+  width: 1px;
+  height: 92px;
+  margin-top: 116px;
+  background: rgb(199 164 73 / 48%);
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    width: calc(100% - 64px);
+  }
+
+  .title {
+    font-size: clamp(68px, 8vw, 82px);
+    line-height: 1;
+  }
+
+  :global(html[lang="uz"]) .title {
+    font-size: clamp(60px, 7vw, 72px);
+  }
+}
+
+@media (max-width: 780px) {
+  .inner {
+    width: 100%;
+    min-height: 760px;
+    padding: 92px 20px 0;
+  }
+
+  .content {
+    margin-top: 96px;
+  }
+
+  .title {
+    font-size: clamp(44px, 13vw, 68px);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+
+  :global(html[lang="uz"]) .title {
+    font-size: clamp(36px, 11vw, 54px);
+  }
+
+  .supportingText {
+    max-width: 330px;
+    margin-top: 34px;
+    font-size: 14px;
+  }
+
+  .callButton {
+    width: min(100%, 320px);
+    min-width: 0;
+    min-height: 64px;
+    margin-top: 32px;
+  }
+
+  .verticalLine {
+    height: 90px;
+    margin-top: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callButton {
+    transition: none;
+  }
+}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Geist } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Geist } from "next/font/google";
 import "./globals.css";
 
 const geist = Geist({
@@ -15,6 +15,13 @@ const cinzel = Cinzel({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "BUGATTI CARWASH & SPA",
   description: "Премиальный выездной уход за автомобилем в Ташкенте.",
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ru" className={`${geist.variable} ${cinzel.variable}`}>
+    <html lang="ru" className={`${geist.variable} ${cinzel.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

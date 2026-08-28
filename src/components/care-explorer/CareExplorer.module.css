@@ -1,0 +1,365 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 1080px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #050506;
+  color: #f6f2e8;
+}
+
+.vehicle {
+  z-index: 0;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroFade {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 270px;
+  background: linear-gradient(180deg, #050506 0%, rgb(5 5 6 / 0%) 100%);
+  pointer-events: none;
+}
+
+.heading {
+  position: absolute;
+  z-index: 3;
+  top: 74px;
+  left: 4.444%;
+}
+
+.eyebrow,
+.mode,
+.bottomInstruction,
+.bottomCount,
+.panelLabel,
+.panelHint {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 1.5px;
+}
+
+.eyebrow,
+.panelLabel {
+  color: #c39a56;
+}
+
+.heading h2 {
+  margin: 29px 0 0;
+  color: #f6f2e8;
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -0.648px;
+}
+
+.subtitle {
+  margin: 25px 0 0 4px;
+  color: #aba8a1;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.mode {
+  position: absolute;
+  z-index: 3;
+  top: 80px;
+  right: 4.444%;
+  color: #aba8a1;
+  font-size: 9px;
+  line-height: 14px;
+  letter-spacing: 1.08px;
+}
+
+.hotspots {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hotspot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: #c39a56;
+  cursor: pointer;
+  opacity: 0.5;
+  pointer-events: auto;
+  transition: color 280ms ease, opacity 280ms ease;
+}
+
+.hotspot.left .leader { order: 0; }
+.hotspot.left .point { order: 1; }
+.hotspot.left .hotspotLabel { order: 2; }
+.hotspot.right .hotspotLabel { order: 0; }
+.hotspot.right .point { order: 1; }
+.hotspot.right .leader { order: 2; }
+
+.hotspotLabel {
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 1.08px;
+  white-space: nowrap;
+}
+
+.leader {
+  width: 34px;
+  height: 1px;
+  background: rgb(195 154 86 / 70%);
+  transition: width 280ms ease, background-color 280ms ease;
+}
+
+.point {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  place-items: center;
+  border: 1px solid rgb(195 154 86 / 55%);
+  border-radius: 50%;
+  transition: border-color 280ms ease, box-shadow 280ms ease;
+}
+
+.point > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c39a56;
+  transition: transform 280ms ease, background-color 280ms ease;
+}
+
+.hotspot:hover,
+.hotspot:focus-visible,
+.hotspot.active {
+  color: #f6f2e8;
+  opacity: 1;
+  outline: none;
+}
+
+.hotspot:hover .leader,
+.hotspot:focus-visible .leader,
+.hotspot.active .leader {
+  width: 46px;
+  background: rgb(195 154 86 / 95%);
+}
+
+.hotspot:hover .point,
+.hotspot:focus-visible .point,
+.hotspot.active .point {
+  border-color: #c39a56;
+  box-shadow: 0 0 18px rgb(195 154 86 / 22%);
+}
+
+.hotspot:hover .point > span,
+.hotspot:focus-visible .point > span,
+.hotspot.active .point > span {
+  transform: scale(1.2);
+  background: #f1c979;
+}
+
+.body { top: 484px; left: 16.944%; }
+.wheels { top: 684px; left: 55.833%; }
+.glass { top: 368px; left: 34.722%; }
+.interior { top: 388px; left: 62.639%; }
+
+.panel {
+  position: absolute;
+  z-index: 3;
+  top: 272px;
+  left: 72.083%;
+  width: 324px;
+  height: 194px;
+  overflow: hidden;
+  border: 1px solid rgb(195 154 86 / 17%);
+  border-radius: 1px;
+  background: rgb(5 5 6 / 76%);
+  backdrop-filter: blur(2px);
+}
+
+.panelContent {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 28px;
+  animation: panelReveal 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panelLabel { font-size: 8px; line-height: 12px; letter-spacing: 1.12px; }
+.panel h3 { margin: 0; font-size: 26px; font-weight: 500; line-height: 32px; letter-spacing: 1.04px; }
+.panelDescription { width: 245px; min-height: 40px; margin: 0; color: #aba8a1; font-size: 13px; line-height: 20px; }
+.panelHint { margin-top: auto; color: rgb(195 154 86 / 72%); font-size: 7px; line-height: 12px; letter-spacing: 0.84px; }
+
+.bottomInstruction,
+.bottomCount {
+  position: absolute;
+  z-index: 3;
+  top: 1004px;
+  color: #aba8a1;
+  font-size: 8px;
+  line-height: 12px;
+  letter-spacing: 1.12px;
+}
+
+.bottomInstruction { left: 4.444%; }
+.bottomCount { right: 4.444%; }
+
+@keyframes panelReveal {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    height: 980px;
+  }
+
+  .vehicle {
+    object-position: 52% center;
+  }
+
+  .heading {
+    top: 68px;
+    left: 4.5%;
+  }
+
+  .mode {
+    right: 4.5%;
+  }
+
+  .panel {
+    top: 250px;
+    left: auto;
+    right: 4.5%;
+    width: 310px;
+  }
+
+  .body { top: 452px; left: 13%; }
+  .wheels { top: 625px; left: 54%; }
+  .glass { top: 350px; left: 31%; }
+  .interior { top: 372px; left: 59%; }
+
+  .bottomInstruction,
+  .bottomCount {
+    top: 920px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    height: 1000px;
+  }
+
+  .vehicle {
+    object-position: 52% 54%;
+  }
+
+  .heroFade {
+    height: 360px;
+  }
+
+  .heading {
+    top: 58px;
+    left: 20px;
+    width: calc(100% - 40px);
+  }
+
+  .heading h2 {
+    margin-top: 20px;
+    font-size: clamp(38px, 11.5vw, 50px);
+    line-height: 1;
+  }
+
+  .subtitle {
+    max-width: 310px;
+    margin: 22px 0 0;
+    font-size: 13px;
+    line-height: 21px;
+  }
+
+  .mode {
+    top: 250px;
+    right: 20px;
+    left: 20px;
+    max-width: calc(100% - 40px);
+    font-size: 7px;
+    text-align: right;
+  }
+
+  .hotspot {
+    gap: 7px;
+  }
+
+  .hotspotLabel {
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+
+  .leader {
+    width: 20px;
+  }
+
+  .hotspot:hover .leader,
+  .hotspot:focus-visible .leader,
+  .hotspot.active .leader {
+    width: 28px;
+  }
+
+  .point {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+
+  .body { top: 438px; left: 20px; }
+  .wheels { top: 566px; right: 20px; left: auto; }
+  .glass { top: 370px; left: 72px; }
+  .interior { top: 402px; right: 20px; left: auto; }
+
+  .panel {
+    top: 674px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    height: 190px;
+  }
+
+  .panelContent {
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .panelDescription {
+    width: min(100%, 280px);
+  }
+
+  .bottomInstruction,
+  .bottomCount {
+    top: 950px;
+    font-size: 7px;
+  }
+
+  .bottomInstruction { left: 20px; }
+  .bottomCount { right: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot,
+  .leader,
+  .point,
+  .point > span { transition: none; }
+  .panelContent { animation: none; }
+}

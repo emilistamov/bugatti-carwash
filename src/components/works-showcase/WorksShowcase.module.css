@@ -1,0 +1,384 @@
+.section {
+  position: relative;
+  min-height: 2400px;
+  overflow: hidden;
+  background: #030404;
+  color: #f6f2e8;
+}
+
+.transition {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(3, 4, 4, 0), #030404);
+  pointer-events: none;
+}
+
+.heading {
+  position: relative;
+  width: min(100% - 128px, 1312px);
+  height: 560px;
+  margin: 0 auto;
+}
+
+.sectionLabel,
+.title,
+.supporting,
+.caseEyebrow,
+.caseTitle,
+.description {
+  margin: 0;
+}
+
+.sectionLabel {
+  position: absolute;
+  top: 92px;
+  left: 0;
+  color: #c39a56;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.15em;
+}
+
+.title {
+  position: absolute;
+  top: 142px;
+  left: 0;
+  font-family: var(--font-display);
+  font-size: 74px;
+  font-weight: 400;
+  line-height: 72px;
+  letter-spacing: -0.012em;
+}
+
+.supporting {
+  position: absolute;
+  top: 226px;
+  right: 60px;
+  width: 380px;
+  color: #9e9c94;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.caseLayout {
+  position: relative;
+  width: min(100% - 128px, 1312px);
+  height: 1540px;
+  margin: 0 auto;
+}
+
+.media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70.122%;
+  height: 1360px;
+  overflow: hidden;
+  background: #080808;
+  opacity: 1;
+  transition: opacity 320ms ease, transform 650ms cubic-bezier(0.2, 0.62, 0.22, 1);
+}
+
+.mediaSwitching {
+  opacity: 0;
+  transform: scale(0.995);
+}
+
+.mediaElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: mediaReveal 650ms ease both;
+}
+
+.mediaShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.04) 62%, rgba(0, 0, 0, 0.58));
+  pointer-events: none;
+}
+
+.playControl {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(195, 154, 86, 0.72);
+  border-radius: 50%;
+  place-items: center;
+  color: #c39a56;
+  background: rgba(3, 4, 4, 0.34);
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+
+.playControl span {
+  margin-left: 3px;
+}
+
+.playControl:hover,
+.playControl:focus-visible {
+  border-color: #c39a56;
+  opacity: 0.88;
+  transform: translate(-50%, -50%) scale(1.04);
+}
+
+.caseInfo {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 330px;
+  opacity: 1;
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.infoSwitching {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.caseEyebrow {
+  color: #c39a56;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.14em;
+}
+
+.caseTitle {
+  margin-top: 46px;
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 68px;
+  letter-spacing: -0.012em;
+}
+
+.divider {
+  display: block;
+  width: 300px;
+  height: 1px;
+  margin-top: 48px;
+  background: rgba(195, 154, 86, 0.42);
+}
+
+.description {
+  margin-top: 42px;
+  font-size: 15px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+}
+
+.description span {
+  display: block;
+}
+
+.caseLink {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: 104px;
+  color: #c39a56;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 220ms ease, gap 220ms ease;
+}
+
+.caseLink:hover,
+.caseLink:focus-visible {
+  gap: 16px;
+  color: #dfbd72;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 96px;
+}
+
+.control {
+  padding: 4px 0;
+  border: 0;
+  color: #6f6e69;
+  background: transparent;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.control:hover,
+.control:focus-visible {
+  color: #b2b0a8;
+}
+
+.controlActive {
+  color: #c39a56;
+  transform: translateX(8px);
+}
+
+@keyframes mediaReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.012);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1050px) {
+  .supporting {
+    right: 0;
+    width: 330px;
+  }
+
+  .media {
+    width: 66%;
+  }
+
+  .caseInfo {
+    width: 30%;
+  }
+
+  .caseTitle {
+    font-size: 52px;
+  }
+
+  .divider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 820px) {
+  .section {
+    min-height: 1700px;
+  }
+
+  .heading,
+  .caseLayout {
+    width: calc(100% - 32px);
+  }
+
+  .heading {
+    height: 520px;
+  }
+
+  .sectionLabel {
+    top: 72px;
+  }
+
+  .title {
+    top: 124px;
+    max-width: 100%;
+    font-size: clamp(40px, 11.5vw, 58px);
+    line-height: 0.98;
+  }
+
+  .supporting {
+    top: 370px;
+    right: auto;
+    left: 0;
+    width: 100%;
+    font-size: 13px;
+    line-height: 21px;
+  }
+
+  .caseLayout {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .media {
+    position: relative;
+    width: 100%;
+    height: min(118vw, 820px);
+  }
+
+  .caseInfo {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    padding: 48px 4px 100px;
+  }
+
+  .caseTitle {
+    margin-top: 22px;
+    font-size: 48px;
+    line-height: 52px;
+  }
+
+  .divider {
+    margin-top: 28px;
+  }
+
+  .description {
+    margin-top: 28px;
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .caseLink {
+    align-items: center;
+    min-height: 44px;
+    margin-top: 40px;
+  }
+
+  .controls {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    margin-top: 42px;
+  }
+
+  .controlActive {
+    transform: none;
+  }
+
+  .control {
+    flex: 1 1 0;
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 0;
+    text-align: center;
+  }
+
+  .playControl {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .mediaElement,
+  .caseInfo,
+  .caseLink,
+  .control {
+    animation: none;
+    transition: none;
+  }
+
+  .playControl {
+    transition: none;
+  }
+}
