@@ -23,6 +23,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.bugatti-carwash.uz/"),
   title: "BUGATTI CARWASH & SPA",
   description: "Премиальный выездной уход за автомобилем в Ташкенте.",
 };
