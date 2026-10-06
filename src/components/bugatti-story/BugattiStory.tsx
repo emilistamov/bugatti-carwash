@@ -8,15 +8,10 @@ import styles from "./BugattiStory.module.css";
 export function BugattiStory() {
   const { t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
-  const engineeringRef = useRef<HTMLElement>(null);
-  const masteryRef = useRef<HTMLElement>(null);
-  const interiorRef = useRef<HTMLElement>(null);
   const tourbillonRef = useRef<HTMLElement>(null);
   const closingRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [engineeringVisible, setEngineeringVisible] = useState(false);
-  const [masteryVisible, setMasteryVisible] = useState(false);
-  const [interiorVisible, setInteriorVisible] = useState(false);
+  const [activeChapter, setActiveChapter] = useState(0);
   const [tourbillonVisible, setTourbillonVisible] = useState(false);
   const [closingVisible, setClosingVisible] = useState(false);
   const [activeCarIndex, setActiveCarIndex] = useState(0);
@@ -86,9 +81,6 @@ export function BugattiStory() {
 
   useEffect(() => {
     const chapters = [
-      { element: engineeringRef.current, reveal: () => setEngineeringVisible(true) },
-      { element: masteryRef.current, reveal: () => setMasteryVisible(true) },
-      { element: interiorRef.current, reveal: () => setInteriorVisible(true) },
       { element: tourbillonRef.current, reveal: () => setTourbillonVisible(true) },
       { element: closingRef.current, reveal: () => setClosingVisible(true) },
     ];
@@ -136,120 +128,133 @@ export function BugattiStory() {
         </p>
       </div>
 
-      <article className={`${styles.chapter} ${styles.reveal}`} aria-labelledby="heritage-title">
-        <Image
-          className={styles.chapterImage}
-          src="/images/bugatti-story/heritage.png"
-          alt="Bugatti Tourbillon, вид спереди и сверху"
-          fill
-          sizes="(max-width: 768px) 100vw, calc(100vw - 128px)"
-        />
-        <div className={styles.imageShade} aria-hidden="true" />
+      <div className={styles.chapterControls}>
+        <button type="button" aria-label="←" aria-controls="brand-story-gallery" disabled={activeChapter === 0} onClick={() => setActiveChapter((chapter) => Math.max(0, chapter - 1))}>←</button>
+        <span aria-live="polite" aria-atomic="true">0{activeChapter + 1} / 04</span>
+        <button type="button" aria-label="→" aria-controls="brand-story-gallery" disabled={activeChapter === 3} onClick={() => setActiveChapter((chapter) => Math.min(3, chapter + 1))}>→</button>
+      </div>
 
-        <div className={styles.chapterCopy}>
-          <p className={styles.chapterNumber}>01</p>
-          <h3 id="heritage-title" className={styles.chapterTitle}>
-            {t.story.heritage.title}
-          </h3>
-          <p className={styles.chapterPlaceholder}>
-            {t.story.heritage.copy[0]}
-            <br />
-            {t.story.heritage.copy[1]}
-          </p>
-        </div>
-      </article>
+      <div id="brand-story-gallery" className={styles.chapterGallery}>
+        <div className={styles.chapterSlide} aria-hidden={activeChapter !== 0} inert={activeChapter !== 0}>
+          <article className={`${styles.chapter} ${styles.reveal}`} aria-labelledby="heritage-title">
+            <Image
+              className={styles.chapterImage}
+              src="/images/bugatti-story/heritage.png"
+              alt="Bugatti Tourbillon, вид спереди и сверху"
+              fill
+              sizes="(max-width: 768px) 100vw, calc(100vw - 128px)"
+            />
+            <div className={styles.imageShade} aria-hidden="true" />
 
-      <article
-        ref={engineeringRef}
-        className={`${styles.engineering} ${styles.viewportChapter} ${engineeringVisible ? styles.chapterVisible : ""}`}
-        aria-labelledby="engineering-title"
-      >
-        <div className={`${styles.engineeringCopy} ${styles.chapterReveal}`}>
-          <p className={styles.engineeringNumber}>02</p>
-          <h3 id="engineering-title" className={styles.editorialLabel}>
-            {t.story.engineering.title}
-          </h3>
-          <p className={styles.editorialCopy}>
-            {t.story.engineering.copy[0]}
-            <br />
-            {t.story.engineering.copy[1]}
-          </p>
-          <span className={styles.goldAxis} aria-hidden="true" />
+            <div className={styles.chapterCopy}>
+              <p className={styles.chapterNumber}>01</p>
+              <h3 id="heritage-title" className={styles.chapterTitle}>
+                {t.story.heritage.title}
+              </h3>
+              <p className={styles.chapterPlaceholder}>
+                {t.story.heritage.copy[0]}
+                <br />
+                {t.story.heritage.copy[1]}
+              </p>
+            </div>
+          </article>
         </div>
 
-        <div className={`${styles.engineeringMedia} ${styles.mediaReveal}`}>
-          <Image
-            className={styles.editorialImage}
-            src="/images/bugatti-story/engineering.png"
-            alt="Колесо Bugatti и деталь кузова из углеволокна"
-            fill
-            sizes="(max-width: 900px) 100vw, 63vw"
-          />
-        </div>
-      </article>
+        <div className={styles.chapterSlide} aria-hidden={activeChapter !== 1} inert={activeChapter !== 1}>
+          <article
+            className={`${styles.engineering} ${styles.viewportChapter} ${activeChapter === 1 ? styles.chapterVisible : ""}`}
+            aria-labelledby="engineering-title"
+          >
+            <div className={`${styles.engineeringCopy} ${styles.chapterReveal}`}>
+              <p className={styles.engineeringNumber}>02</p>
+              <h3 id="engineering-title" className={styles.editorialLabel}>
+                {t.story.engineering.title}
+              </h3>
+              <p className={styles.editorialCopy}>
+                {t.story.engineering.copy[0]}
+                <br />
+                {t.story.engineering.copy[1]}
+              </p>
+              <span className={styles.goldAxis} aria-hidden="true" />
+            </div>
 
-      <article
-        ref={masteryRef}
-        className={`${styles.mastery} ${styles.viewportChapter} ${masteryVisible ? styles.chapterVisible : ""}`}
-        aria-labelledby="mastery-title"
-      >
-        <div className={`${styles.masteryMedia} ${styles.mediaReveal}`}>
-          <Image
-            className={styles.editorialImage}
-            src="/images/bugatti-story/mastery.png"
-            alt="Драматичный крупный план передней части Bugatti"
-            fill
-            sizes="(max-width: 900px) 100vw, 80vw"
-          />
-        </div>
-
-        <div className={`${styles.masteryCopy} ${styles.chapterReveal}`}>
-          <p className={styles.masteryNumber}>03</p>
-          <h3 id="mastery-title" className={styles.editorialLabel}>
-            {t.story.mastery.title}
-          </h3>
-          <p className={styles.editorialCopy}>
-            {t.story.mastery.copy[0]}
-            <br />
-            {t.story.mastery.copy[1]}
-          </p>
+            <div className={`${styles.engineeringMedia} ${styles.mediaReveal}`}>
+              <Image
+                className={styles.editorialImage}
+                src="/images/bugatti-story/engineering.png"
+                alt="Колесо Bugatti и деталь кузова из углеволокна"
+                fill
+                sizes="(max-width: 900px) 100vw, 63vw"
+              />
+            </div>
+          </article>
         </div>
 
-        <div className={`${styles.detailMedia} ${styles.detailReveal}`}>
-          <Image
-            className={styles.editorialImage}
-            src="/images/bugatti-story/mastery-detail.png"
-            alt="Крупный план кузовного элемента с эмблемой EB"
-            fill
-            sizes="(max-width: 900px) 55vw, 28vw"
-          />
-        </div>
-      </article>
+        <div className={styles.chapterSlide} aria-hidden={activeChapter !== 2} inert={activeChapter !== 2}>
+          <article
+            className={`${styles.mastery} ${styles.viewportChapter} ${activeChapter === 2 ? styles.chapterVisible : ""}`}
+            aria-labelledby="mastery-title"
+          >
+            <div className={`${styles.masteryMedia} ${styles.mediaReveal}`}>
+              <Image
+                className={styles.editorialImage}
+                src="/images/bugatti-story/mastery.png"
+                alt="Драматичный крупный план передней части Bugatti"
+                fill
+                sizes="(max-width: 900px) 100vw, 80vw"
+              />
+            </div>
 
-      <article
-        ref={interiorRef}
-        className={`${styles.interior} ${styles.viewportChapter} ${interiorVisible ? styles.chapterVisible : ""}`}
-        aria-labelledby="interior-title"
-      >
-        <h3 id="interior-title" className={`${styles.interiorLabel} ${styles.chapterReveal}`}>
-          04 / {t.story.interior.title}
-        </h3>
-        <p className={`${styles.interiorNumber} ${styles.chapterReveal}`}>04</p>
+            <div className={`${styles.masteryCopy} ${styles.chapterReveal}`}>
+              <p className={styles.masteryNumber}>03</p>
+              <h3 id="mastery-title" className={styles.editorialLabel}>
+                {t.story.mastery.title}
+              </h3>
+              <p className={styles.editorialCopy}>
+                {t.story.mastery.copy[0]}
+                <br />
+                {t.story.mastery.copy[1]}
+              </p>
+            </div>
 
-        <div className={`${styles.interiorMedia} ${styles.mediaReveal}`}>
-          <Image
-            className={styles.editorialImage}
-            src="/images/bugatti-story/interior.png"
-            alt="Широкий вид кокпита и интерьера Bugatti"
-            fill
-            sizes="(max-width: 900px) 100vw, calc(100vw - 128px)"
-          />
-          <div className={styles.interiorFade} aria-hidden="true" />
-          <p className={styles.interiorCopy}>
-            {t.story.interior.copy}
-          </p>
+            <div className={`${styles.detailMedia} ${styles.detailReveal}`}>
+              <Image
+                className={styles.editorialImage}
+                src="/images/bugatti-story/mastery-detail.png"
+                alt="Крупный план кузовного элемента с эмблемой EB"
+                fill
+                sizes="(max-width: 900px) 55vw, 28vw"
+              />
+            </div>
+          </article>
         </div>
-      </article>
+
+        <div className={styles.chapterSlide} aria-hidden={activeChapter !== 3} inert={activeChapter !== 3}>
+          <article
+            className={`${styles.interior} ${styles.viewportChapter} ${activeChapter === 3 ? styles.chapterVisible : ""}`}
+            aria-labelledby="interior-title"
+          >
+            <h3 id="interior-title" className={`${styles.interiorLabel} ${styles.chapterReveal}`}>
+              04 / {t.story.interior.title}
+            </h3>
+            <p className={`${styles.interiorNumber} ${styles.chapterReveal}`}>04</p>
+
+            <div className={`${styles.interiorMedia} ${styles.mediaReveal}`}>
+              <Image
+                className={styles.editorialImage}
+                src="/images/bugatti-story/interior.png"
+                alt="Широкий вид кокпита и интерьера Bugatti"
+                fill
+                sizes="(max-width: 900px) 100vw, calc(100vw - 128px)"
+              />
+              <div className={styles.interiorFade} aria-hidden="true" />
+              <p className={styles.interiorCopy}>
+                {t.story.interior.copy}
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
 
       <article
         ref={tourbillonRef}

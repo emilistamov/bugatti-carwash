@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  min-height: 5900px;
+  min-height: 0;
   overflow: hidden;
   background: #030404;
   color: #f6f2e8;
@@ -652,7 +652,7 @@
 
 @media (max-width: 1024px) {
   .section {
-    min-height: 5480px;
+    min-height: 0;
   }
 
   .intro,
@@ -1051,7 +1051,85 @@
   }
 }
 
+.chapterControls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  width: min(calc(100% - 128px), 1312px);
+  margin: 0 auto 24px;
+  color: #c39a56;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.chapterControls button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(195, 154, 86, 0.28);
+  background: transparent;
+  color: #c39a56;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.chapterControls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.chapterControls button:hover:not(:disabled),
+.chapterControls button:focus-visible {
+  border-color: #c39a56;
+}
+
+.chapterControls button:focus-visible {
+  outline: 1px solid #c39a56;
+  outline-offset: 4px;
+}
+
+.chapterGallery {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chapterSlide {
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 350ms ease, transform 450ms var(--motion-ease), visibility 0s;
+}
+
+.chapterSlide[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(18px);
+  transition: opacity 350ms ease, transform 450ms var(--motion-ease), visibility 0s 450ms;
+}
+
+.chapterSlide > article {
+  margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+  .chapterControls {
+    width: calc(100% - 48px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .chapterSlide,
+  .chapterSlide[aria-hidden="true"] {
+    transform: none;
+    transition: none;
+  }
+
   .reveal,
   .chapterImage,
   .chapterReveal,
