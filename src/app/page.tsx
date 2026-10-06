@@ -45,9 +45,26 @@ export const metadata: Metadata = {
   },
 };
 
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoWash",
+  name: "Bugatti Car Wash & Spa",
+  url: "https://www.bugatti-carwash.uz/",
+  areaServed: "Tashkent, Uzbekistan",
+  description,
+  telephone: "+998971110808",
+  sameAs: ["https://www.instagram.com/bugatti_carwash/"],
+};
+
 export default function Home() {
   return (
     <I18nProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(businessJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <MotionController />
       <Hero />
       <BugattiStory />
